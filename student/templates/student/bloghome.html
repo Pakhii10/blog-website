@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog</title>
+  <link rel="stylesheet" href="{%static 'student/css/bloghome.css'%}">
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="logo">MyBlog</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="{% url 'loginpage' %}">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to My Blog</h1>
+      <p>Sharing ideas, stories, and experiences with the world.</p>
+      <a href="{% url 'getstarted' %}" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog-section">
+  <h2>Latest Posts</h2>
+  <div class="blog-container">
+
+    <div class="blog-card">
+      <video autoplay loop muted playsinline>
+        <source src="{%static 'student/videos/paint.mp4'%}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <h3>The Power of Colors in Creativity</h3>
+      <p>Discover how colors influence mood, boost creativity, and help artists express emotions. From warm tones that inspire energy to cool shades that bring calmness—learn how you can use colors in your daily life.</p>
+      <a href="#">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <video autoplay loop muted playsinline>
+        <source src="{%static 'student/videos/peace.mp4'%}" type="video/mp4">
+      </video>
+      <h3>Finding Calm in Nature</h3>
+      <p>Sometimes peace comes from the simplest places—like watching water lilies float on a pond. Explore how connecting with nature can reduce stress, improve focus, and bring balance to your lifestyle.</p>
+      <a href="#">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <video autoplay loop muted playsinline>
+        <source src="{%static 'student/videos/city.mp4' %}" type="video/mp4">
+      </video>
+      <h3>The City That Never Sleeps</h3>
+      <p>Cities come alive at night with lights, stories, and endless energy. Take a glimpse into urban life after sunset, from buzzing streets to quiet rooftop reflections, and how it shapes modern living.</p>
+      <a href="#">Read More →</a>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MyBlog | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Blog</title>
+  <link rel="stylesheet" href="{% static 'student/css/getstart.css' %}">
+</head>
+<body>
+  <header>
+    <div class="logo">MyBlog</div>
+  </header>
+
+  <main>
+    <section class="blog-submission">
+      <h1>Submit Your Blog</h1>
+      <form action=''>
+        {{form.as_p}}
+        <button type="submit" class="btn">Submit</button>
+      </form>
+      
+      {% comment %} <!-- Blog submission form -->
+      <form action="{% url 'getstarted' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Name field -->
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <!-- Video Upload -->
+        <label for="video">Upload Video</label>
+        <input type="file" id="video" name="video" accept="video/*" required>
+
+        <!-- Blog Description -->
+        <label for="description">Blog Description</label>
+        <textarea id="description" name="description" rows="5" placeholder="Describe your blog..." required></textarea>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Submit Blog</button>
+      </form> {% endcomment %}
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MyBlog | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Success</title>
+    <link rel="stylesheet" href="{% static 'student/css/success.css' %}">
+</head>
+<body>
+    <div class="success-box">
+        <h2>Account Created Successfully!</h2>
+        <a href="{% url 'blog' %}">Go to Home</a>
+    </div>
+</body>
+</html>

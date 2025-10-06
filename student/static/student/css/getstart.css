@@ -1,0 +1,121 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 24px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Blog Submission Section */
+.blog-submission {
+  width: 80%;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.blog-submission input[type="text"],
+.blog-submission textarea,
+.blog-submission input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.blog-submission textarea {
+  resize: vertical;
+  height: 150px;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Label Styling */
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+/* Form Field Styling */
+input[type="text"], textarea, input[type="file"] {
+  font-size: 16px;
+}
+
+input[type="file"] {
+  background-color: #f9f9f9;
+  padding: 12px;
+}
+
+input[type="text"]:focus, textarea:focus, input[type="file"]:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+/* Center and Style the Footer */
+footer p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .blog-submission {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+}
