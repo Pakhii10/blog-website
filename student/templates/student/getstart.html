@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%load static%}
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,30 +15,22 @@
   <main>
     <section class="blog-submission">
       <h1>Submit Your Blog</h1>
-      <form action=''>
-        {{form.as_p}}
-        <button type="submit" class="btn">Submit</button>
-      </form>
-      
-      {% comment %} <!-- Blog submission form -->
+
+      <!-- Display messages -->
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <!-- Django form -->
       <form action="{% url 'getstarted' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        
-        <!-- Name field -->
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
-        <!-- Video Upload -->
-        <label for="video">Upload Video</label>
-        <input type="file" id="video" name="video" accept="video/*" required>
-
-        <!-- Blog Description -->
-        <label for="description">Blog Description</label>
-        <textarea id="description" name="description" rows="5" placeholder="Describe your blog..." required></textarea>
-
-        <!-- Submit Button -->
+        {{ form.as_p }}
         <button type="submit" class="btn">Submit Blog</button>
-      </form> {% endcomment %}
+      </form>
     </section>
   </main>
 

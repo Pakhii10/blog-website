@@ -17,7 +17,12 @@
         <li><a href="#">Categories</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="{% url 'loginpage' %}">Login</a></li>
+        {% if request.session.username %}
+  <li><span>Logged in as {{ request.session.username }}</span></li>
+  <li><a href="{% url 'logout' %}">Logout</a></li>
+{% else %}
+  <li><a href="{% url 'loginpage' %}">Login</a></li>
+{% endif %}
       </ul>
     </nav>
   </header>
@@ -25,47 +30,61 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Welcome to My Blog</h1>
+      {% if request.session.username %}
+        <h1>Welcome back, {{ request.session.username }}!</h1>
+      {% else %}
+        <h1>Welcome to My Blog</h1>
+      {% endif %}
       <p>Sharing ideas, stories, and experiences with the world.</p>
       <a href="{% url 'getstarted' %}" class="btn">Get Started</a>
     </div>
   </section>
 
+ 
   <!-- Blog Section -->
-  <section class="blog-section">
-  <h2>Latest Posts</h2>
-  <div class="blog-container">
+<section class="blog-section" style="padding: 40px 20px; background-color: #f9f9f9;">
+  <h2 style="text-align: center; margin-bottom: 30px;">Latest Posts</h2>
+  <div class="blog-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
 
-    <div class="blog-card">
-      <video autoplay loop muted playsinline>
-        <source src="{%static 'student/videos/paint.mp4'%}" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <h3>The Power of Colors in Creativity</h3>
-      <p>Discover how colors influence mood, boost creativity, and help artists express emotions. From warm tones that inspire energy to cool shades that bring calmness—learn how you can use colors in your daily life.</p>
-      <a href="#">Read More →</a>
-    </div>
-
-    <div class="blog-card">
-      <video autoplay loop muted playsinline>
-        <source src="{%static 'student/videos/peace.mp4'%}" type="video/mp4">
-      </video>
-      <h3>Finding Calm in Nature</h3>
-      <p>Sometimes peace comes from the simplest places—like watching water lilies float on a pond. Explore how connecting with nature can reduce stress, improve focus, and bring balance to your lifestyle.</p>
-      <a href="#">Read More →</a>
-    </div>
-
-    <div class="blog-card">
-      <video autoplay loop muted playsinline>
-        <source src="{%static 'student/videos/city.mp4' %}" type="video/mp4">
-      </video>
-      <h3>The City That Never Sleeps</h3>
-      <p>Cities come alive at night with lights, stories, and endless energy. Take a glimpse into urban life after sunset, from buzzing streets to quiet rooftop reflections, and how it shapes modern living.</p>
-      <a href="#">Read More →</a>
-    </div>
+    {% for post in posts %}
+      <div class="blog-card" style="background: #fff; border-radius: 10px; padding: 15px; width: 320px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        
+        {% if post.video %}
+          <video class="blog-video" width="100%" height="200" autoplay loop muted playsinline style="border-radius: 8px;">
+            <source src="{{ post.video.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% endif %}
+        
+        <h3 style="margin-top: 15px; font-size: 18px;">{{ post.title }}</h3>
+        <p style="font-size: 14px; color: #555;">{{ post.content }}</p>
+        <p style="font-size: 12px; color: #888;">
+          <small>By {{ post.author_name }} on {{ post.created_at|date:"M d, Y H:i" }}</small>
+        </p>
+      </div>
+    {% empty %}
+      <p style="text-align: center;">No posts yet. Be the first to <a href="{% url 'getstarted' %}">Get Started</a>!</p>
+    {% endfor %}
 
   </div>
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Select all video elements inside blog cards
+  document.querySelectorAll('.blog-card video').forEach(video => {
+    video.muted = true; // Ensure muted for autoplay
+    video.loop = true; // Ensure looping
+    video.playsInline = true; // Ensure plays inline on mobile
+    
+    video.play().catch(() => {
+      console.log('Autoplay blocked by browser. Video will require user interaction.');
+    });
+  });
+});
+</script>
+
+
 
   <!-- Footer -->
   <footer>

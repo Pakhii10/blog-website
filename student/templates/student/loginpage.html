@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | MyBlog</title>
+  <link rel="stylesheet" href="{% static 'student/css/login.css' %}">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h1>Welcome Back</h1>
+      <p class="subtitle">Login to your account</p>
+
+      {% comment %} {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li style="color:green;">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %} {% endcomment %}
+
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Login</button>
+      </form>
+
+      <p class="login-message">
+        Don’t have an account? <a href="{% url 'regloginpage' %}">Register here</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
